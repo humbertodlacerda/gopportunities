@@ -10,3 +10,22 @@
 .idea/jetClient
 go.sum
 /.idea/git_toolbox_prj.xml
+
+# Binaries
+
+*.exe
+*.dll
+*.dylib
+
+# Test Binary
+
+*.test
+
+# Coverage
+
+*.out
+
+Db folter
+
+db/
+/.idea/dataSources.xml
