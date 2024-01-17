@@ -1,17 +1,18 @@
-package movements
+package movement
 
 import (
 	"fmt"
 	"github.com/humbertodlacerda/gopportunities/handler"
+	"github.com/humbertodlacerda/gopportunities/internal/enum"
 )
 
 type CreateMovementRequest struct {
-	Date        string `json:"date"`
-	Description string `json:"description"`
-	Category    string `json:"category"`
-	Account     string `json:"account"`
-	Value       int64  `json:"value"`
-	Status      int64  `json:"status"`
+	Date        string      `json:"date"`
+	Description string      `json:"description"`
+	Category    string      `json:"category"`
+	Account     string      `json:"account"`
+	Value       int64       `json:"value"`
+	Status      enum.Status `json:"status"`
 }
 
 func (c *CreateMovementRequest) Validate() error {
@@ -41,12 +42,12 @@ func (c *CreateMovementRequest) Validate() error {
 }
 
 type UpdateMovementRequest struct {
-	Date        string `json:"date"`
-	Description string `json:"description"`
-	Category    string `json:"category"`
-	Account     string `json:"account"`
-	Value       int64  `json:"value"`
-	Status      int64  `json:"status"`
+	Date        string      `json:"date"`
+	Description string      `json:"description"`
+	Category    string      `json:"category"`
+	Account     string      `json:"account"`
+	Value       int64       `json:"value"`
+	Status      enum.Status `json:"status"`
 }
 
 func (u *UpdateMovementRequest) Validate() error {

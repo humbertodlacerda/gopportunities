@@ -1,18 +1,19 @@
 package schemas
 
 import (
+	"github.com/humbertodlacerda/gopportunities/internal/enum"
 	"gorm.io/gorm"
 	"time"
 )
 
 type Movement struct {
 	gorm.Model
-	Date        string `json:"date"`
-	Description string `json:"description"`
-	Category    string `json:"category"`
-	Account     string `json:"account"`
-	Value       int64  `json:"value"`
-	Status      int64  `json:"status"`
+	Date        string      `json:"date"`
+	Description string      `json:"description"`
+	Category    string      `json:"category"`
+	Account     string      `json:"account"`
+	Value       int64       `json:"value"`
+	Status      enum.Status `json:"status"`
 }
 
 type MovementResponse struct {

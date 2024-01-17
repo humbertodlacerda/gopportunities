@@ -12,7 +12,9 @@ func CreateOpening(context echo.Context) error {
 
 	context.Bind(&request)
 
-	if err := request.Validate(); err != nil {
+	err := request.Validate()
+
+	if err != nil {
 		handler.Logger.Errorf("error creating opening: %v", err.Error())
 		return handler.SendError(context, http.StatusBadRequest, err.Error())
 	}
@@ -26,10 +28,12 @@ func CreateOpening(context echo.Context) error {
 		Salary:   request.Salary,
 	}
 
-	if err := handler.Db.Create(&opening).Error; err != nil {
+	err = handler.Db.Create(&opening).Error
+
+	if err != nil {
 		handler.Logger.Errorf("error creating opening: %v", err.Error())
 		return handler.SendError(context, http.StatusInternalServerError, "error creating opening on database")
 	}
 
-	return handler.SendSuccess(context, "create-opeing", opening)
+	return handler.SendSuccess(context, "create-opening", opening)
 }

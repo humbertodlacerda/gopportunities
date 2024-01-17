@@ -2,6 +2,7 @@ package router
 
 import (
 	"github.com/humbertodlacerda/gopportunities/handler"
+	"github.com/humbertodlacerda/gopportunities/handler/movement"
 	"github.com/humbertodlacerda/gopportunities/handler/opening"
 	"github.com/labstack/echo/v4"
 )
@@ -17,12 +18,12 @@ func initializeRoutes(router *echo.Echo) {
 		openingGroup.GET("/openings", opening.ListOpenings)
 	}
 
-	//movementGroup := router.Group("/api")
-	//{
-	//	movementGroup.GET("/movement")
-	//	movementGroup.POST("/movement")
-	//	movementGroup.DELETE("/movement")
-	//	movementGroup.PUT("/movement")
-	//	movementGroup.GET("/movements")
-	//}
+	movementGroup := router.Group("/api")
+	{
+		movementGroup.GET("/movement", movement.ShowMovement)
+		movementGroup.POST("/movement", movement.CreateMovement)
+		movementGroup.DELETE("/movement", movement.DeleteMovement)
+		movementGroup.PUT("/movement", movement.UpdateMovement)
+		movementGroup.GET("/movements", movement.ListMovement)
+	}
 }

@@ -14,5 +14,5 @@ func ListOpenings(context echo.Context) error {
 		return handler.SendError(context, http.StatusInternalServerError, "error listing openings")
 	}
 
-	return handler.SendSuccess(context, "list-opening", openings)
+	return handler.SendSuccess(context, "list-openings", openings)
 }
