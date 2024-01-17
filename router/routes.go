@@ -1,18 +1,28 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/humbertodlacerda/gopportunities/handler"
+	"github.com/humbertodlacerda/gopportunities/handler/opening"
+	"github.com/labstack/echo/v4"
 )
 
-func initializeRoutes(router *gin.Engine) {
+func initializeRoutes(router *echo.Echo) {
 	handler.InitializeHandler()
-	v1 := router.Group("/api/v1")
+	openingGroup := router.Group("/api")
 	{
-		v1.GET("/opening", handler.ShowOpeningHandler)
-		v1.POST("/opening", handler.CreateOpeningHandler)
-		v1.DELETE("/opening", handler.DeleteOpeningHandler)
-		v1.PUT("/opening", handler.UpdateOpeningHandler)
-		v1.GET("/openings", handler.ListOpeningsHandler)
+		openingGroup.GET("/opening", opening.ShowOpening)
+		openingGroup.POST("/opening", opening.CreateOpening)
+		openingGroup.DELETE("/opening", opening.DeleteOpening)
+		openingGroup.PUT("/opening", opening.UpdateOpening)
+		openingGroup.GET("/openings", opening.ListOpenings)
 	}
+
+	//movementGroup := router.Group("/api")
+	//{
+	//	movementGroup.GET("/movement")
+	//	movementGroup.POST("/movement")
+	//	movementGroup.DELETE("/movement")
+	//	movementGroup.PUT("/movement")
+	//	movementGroup.GET("/movements")
+	//}
 }

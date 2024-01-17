@@ -2,21 +2,23 @@ package handler
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
+	"github.com/labstack/echo/v4"
 	"net/http"
 )
 
-func sendError(context *gin.Context, code int, msg string) {
-	context.Header("Content-type", "application/json")
-	context.JSON(code, gin.H{
+func SendError(context echo.Context, code int, msg string) error {
+	context.Response().Header().Set("Content-type", "application/json")
+
+	return context.JSON(code, echo.Map{
 		"message":   msg,
 		"errorCode": code,
 	})
 }
 
-func sendSuccess(context *gin.Context, operation string, data interface{}) {
-	context.Header("Content-type", "application/json")
-	context.JSON(http.StatusOK, gin.H{
+func SendSuccess(context echo.Context, operation string, data interface{}) error {
+	context.Response().Header().Set("Content-type", "application/json")
+
+	return context.JSON(http.StatusOK, echo.Map{
 		"message": fmt.Sprintf("operation from handler: %s successfull", operation),
 		"data":    data,
 	})
